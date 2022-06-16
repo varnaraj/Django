@@ -1,0 +1,21 @@
+<HTML>
+{% load static %}
+    <HEAD>
+    
+    <TITLE>dbApp</TITLE>
+    
+    </HEAD>
+    
+    <BODY BGCOLOR="FFFFFF">
+        {% if emp_list %}
+        {% for employee in emp_list %}
+        {{employee.empNo}}
+        {{employee.empName}}
+        {{employee.empSalary}}
+        {{employee.empAddress}}
+        {% endfor %}
+        {% endif %}
+        
+    </BODY>
+    
+    </HTML>

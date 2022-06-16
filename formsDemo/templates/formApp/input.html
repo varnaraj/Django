@@ -1,0 +1,19 @@
+<HTML>
+    {% load static %}
+        <HEAD>
+        
+        <TITLE>formApp</TITLE>
+        
+        </HEAD>
+        
+        <BODY BGCOLOR="FFFFFF">
+        <div>
+            <form method ="post">
+            {{form.as_p}}
+            {% csrf_token %}
+            <input type="submit" value="submit">
+            </form>
+        </div>
+        </BODY>
+        
+        </HTML>
