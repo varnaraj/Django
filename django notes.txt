@@ -1,0 +1,138 @@
+Django server create
+django project create
+django app start
+project--> settings.py -> add my app name to all APPS
+#views.py update my function 
+urls.py =< linking urls patern to what url i type and which function have to home
+
+django-admin startproject project name
+python manage.py startapp appname
+
+server run=> python manage.py runserver
+
+
+
+to run in cmd -> we use command django-admin
+no need to run a external server
+1) install python and django
+2) django-admin startproject projectname to create a django projectname
+3) understand the django project
+4) to see all the created files (tree -f)
+5-__init__ => intha file irukura folder ah python folder ah consider pannum
+6-settings.py=> project da configurations details irukum/ installed applications / database configurations
+7-urls.py => all urls patterns um ithula irukum
+8-wsgi.py=> web server gateway interface; usage : we can deploy ouur application to production server
+9-asgi.py=> to handle assynhronous websites
+10- manage.py=> to start server , and check test cases
+                creating migrations
+
+python manage.py runserver <= Code to run the server
+
+to create a app 
+python manage.py startapp firstApp
+
+in firstApp 
+    admin.py => to get admin interface and django models
+    models.py=> application data models
+    test.py=> testing functions
+    views.py => enkada request ku eththa mari thani thani views edukum
+        2 types
+            1.function based views
+            2.class based views
+    migrations => database specific information save panrathu
+
+in settings.py from firstproject we need to add our app name into INSTALLED APPS to inform django, i am doing this app in this computer
+
+in views we specify our request , before that we import => from django.http impoer HttpResponse to get response from http
+Create a function with the specified name and return message with HttpResponse(message)
+In urls.py we have to liked with that function which is created in views.py and the web urls
+update with what we type in ur and wht function have to run
+__________________________________________________________________________________________
+
+FILE handle
+
+=> intha code entha file la adikramo antha file da name varum
+ print(__file__)    
+
+=> to find the path of the python file with that python file name
+import os
+print(os.path.abspath(__file__))
+
+=>to find directory name or path of that python file without that python file name
+print(os.path.dirname(os.path.abspath(__file__)))
+__________________________________________________________________________________________
+TO IMPORT HTML FROM external
+=> in settings.py 
+import os
+
+# Build paths inside the project like this: 
+BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+BASE_DIR2=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATE_DIR=os.path.join(BASE_DIR2+'templates')
+
+and link thay TEMPLATE_DIR in the template function dir in setting.py with square bracket
+
+then go to views.py and define a function to  render the html file
+then urls.py and set the link to that created function
+__________________________________________________________________________________________
+
+Template tags
+we will give a dynamic content in views.py , but we have to display with the html file wich is in the template folder
+
+we have to create dictionary with that given dynamic data , and return that with the contex key word
+ex=> 
+then we have to say where i have to put that dictonary in the html file , and edit html
+
+__________________________________________________________________________________________
+Static files include
+create static folder into project
+create image folder into static folder
+insert a image into that image folder
+in setting.py create a static path and add that path to static
+in the html file we have to add  <img src="{% static 'images\img.jpg' %}" alt="convocation"> 
+    and {% load static %}
+
+__________________________________________________________________________________________
+MOdels and connnecting database
+each models maps to a single database
+each model is a python class that subclass of django.db.models.model
+each attribute of the model represent a database field
+
+steps=>
+    1.include table contents in models.py 
+        {
+        # Create your models here.
+        class employee(models.Model):
+        empNo=models.IntegerField()
+        empName=models.CharField(max_length=20)
+        empSalary=models.IntegerField()
+        empAddress=models.CharField(max_length=50)
+        }
+    2.create table using coommand -> python manage.py makemigration     //to tell the db to create table (sql query creation)
+                if more apps in ouur project -> python manage.py makemigrations ($appname)
+                then ->python manage.py migrate         //to excecute table (sql query excecution)
+    3.to see the sql query => python manage.py sqlmigrate empApp 0001
+    4.To tell our application , we choose the particular table
+        go to admin.py and first import our class model (here employee)
+                            Second register that model into admin site (admin.site.register(employee))
+    5.create a superuser to access admin page with user name and password
+                     using manage.py => python manage.py createsuperuser 
+    6. runserver with 127.0.0.1/8000/admin
+
+__________________________________________________________________________________________
+Model-> view-> template
+__________________________________________________________________________________________
+
+//forms 
+using forms.Form to create class 
+and we need to create a form folder
+
+
+
+
+
+
+
+
